@@ -1,0 +1,13 @@
+<h1>Locus</h1>
+
+Current User ID: {{ user_id }}
+<hr>
+<br>
+<b>Please select the statement for each question that best describes how you feel.</b>
+<br>
+<form action="" method="post">
+	{{ form.as_table }}
+	{% csrf_token %}
+	<input type="submit" value="Submit">
+</form>
+

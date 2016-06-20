@@ -1,0 +1,16 @@
+<h1>Locus</h1>
+
+Current User ID: {{ user_id }}
+<hr>
+<br>
+<b>Please answer each of the following questions.</b>
+<br>
+<form action="" method="post">
+	<table>
+	{{ form.as_table }}
+    </table>
+	{% csrf_token %}
+	<input type="submit" value="Submit">
+</form>
+
+<a href='/experiments/locus/'>Next</a>

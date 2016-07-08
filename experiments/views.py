@@ -3,6 +3,10 @@ from django.http import HttpResponse
 from experiments.models import User, Locus, UserProfile
 from experiments.forms import LocusForm, UserProfileForm
 
+import experiments.eye_tracker
+
+from experiments.eye_tracker import TobiiController
+
 
 # Create your views here.
 def index(request):
@@ -101,6 +105,20 @@ def locus(request):
 
 	context = {'user_id': current_user_id, 'form': form}
 	return render(request, 'experiments/locus.html', context)
+
+def eyetracker(request): 
+	eb = TobiiController()
+	print "view works"
+	eb.waitForFindEyeTracker()
+	print eb.eyetrackers
+	eb.activate(eb.eyetrackers.keys()[0])
+	eb.startTracking()
+	time.sleep(10)
+	eb.stopTracking()
+	eb.destroy()
+	return HttpResponse("Eye Tracker")
+
+
 
 
 
